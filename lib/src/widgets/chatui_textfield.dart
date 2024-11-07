@@ -22,7 +22,7 @@
 import 'dart:async';
 import 'dart:io' show File, Platform;
 
-import 'package:audio_waveforms/audio_waveforms.dart';
+// import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:chatview/src/utils/constants/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +74,7 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
 
   final ImagePicker _imagePicker = ImagePicker();
 
-  RecorderController? controller;
+  // RecorderController? controller;
 
   ValueNotifier<bool> isRecording = ValueNotifier(false);
 
@@ -111,9 +111,9 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
             const Duration(seconds: 1));
     super.initState();
 
-    if (!kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
-      controller = RecorderController();
-    }
+    // if (!kIsWeb && (Platform.isIOS || Platform.isAndroid)) {
+    //   controller = RecorderController();
+    // }
   }
 
   @override
@@ -149,72 +149,72 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
         builder: (_, isRecordingValue, child) {
           return Row(
             children: [
-              if (isRecordingValue && controller != null && !kIsWeb)
-                Expanded(
-                  child: AudioWaveforms(
-                    size: const Size(double.maxFinite, 50),
-                    recorderController: controller!,
-                    margin: voiceRecordingConfig?.margin,
-                    padding: voiceRecordingConfig?.padding ??
-                        EdgeInsets.symmetric(
-                          horizontal: cancelRecordConfiguration == null ? 8 : 5,
+              // if (isRecordingValue && controller != null && !kIsWeb)
+              //   Expanded(
+              //     child: AudioWaveforms(
+              //       size: const Size(double.maxFinite, 50),
+              //       recorderController: controller!,
+              //       margin: voiceRecordingConfig?.margin,
+              //       padding: voiceRecordingConfig?.padding ??
+              //           EdgeInsets.symmetric(
+              //             horizontal: cancelRecordConfiguration == null ? 8 : 5,
+              //           ),
+              //       decoration: voiceRecordingConfig?.decoration ??
+              //           BoxDecoration(
+              //             color: voiceRecordingConfig?.backgroundColor,
+              //             borderRadius: BorderRadius.circular(12.0),
+              //           ),
+              //       waveStyle: voiceRecordingConfig?.waveStyle ??
+              //           WaveStyle(
+              //             extendWaveform: true,
+              //             showMiddleLine: false,
+              //             waveColor:
+              //                 voiceRecordingConfig?.waveStyle?.waveColor ??
+              //                     Colors.black,
+              //           ),
+              //     ),
+              //   )
+              // else
+              Expanded(
+                child: TextField(
+                  focusNode: widget.focusNode,
+                  controller: widget.textEditingController,
+                  style: textFieldConfig?.textStyle ??
+                      const TextStyle(color: Colors.white),
+                  maxLines: textFieldConfig?.maxLines ?? 5,
+                  minLines: textFieldConfig?.minLines ?? 1,
+                  keyboardType: textFieldConfig?.textInputType,
+                  inputFormatters: textFieldConfig?.inputFormatters,
+                  onChanged: _onChanged,
+                  onSubmitted: (_) {
+                    widget.onSubmit();
+                  },
+                  autofocus: textFieldConfig?.autofocus ?? false,
+                  enabled: textFieldConfig?.enabled,
+                  textCapitalization: textFieldConfig?.textCapitalization ??
+                      TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                    hintText:
+                        textFieldConfig?.hintText ?? PackageStrings.message,
+                    fillColor: sendMessageConfig?.textFieldBackgroundColor ??
+                        Colors.white,
+                    filled: true,
+                    hintStyle: textFieldConfig?.hintStyle ??
+                        TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey.shade600,
+                          letterSpacing: 0.25,
                         ),
-                    decoration: voiceRecordingConfig?.decoration ??
-                        BoxDecoration(
-                          color: voiceRecordingConfig?.backgroundColor,
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                    waveStyle: voiceRecordingConfig?.waveStyle ??
-                        WaveStyle(
-                          extendWaveform: true,
-                          showMiddleLine: false,
-                          waveColor:
-                              voiceRecordingConfig?.waveStyle?.waveColor ??
-                                  Colors.black,
-                        ),
-                  ),
-                )
-              else
-                Expanded(
-                  child: TextField(
-                    focusNode: widget.focusNode,
-                    controller: widget.textEditingController,
-                    style: textFieldConfig?.textStyle ??
-                        const TextStyle(color: Colors.white),
-                    maxLines: textFieldConfig?.maxLines ?? 5,
-                    minLines: textFieldConfig?.minLines ?? 1,
-                    keyboardType: textFieldConfig?.textInputType,
-                    inputFormatters: textFieldConfig?.inputFormatters,
-                    onChanged: _onChanged,
-                    onSubmitted: (_) {
-                      widget.onSubmit();
-                    },
-                    autofocus: textFieldConfig?.autofocus ?? false,
-                    enabled: textFieldConfig?.enabled,
-                    textCapitalization: textFieldConfig?.textCapitalization ??
-                        TextCapitalization.sentences,
-                    decoration: InputDecoration(
-                      hintText:
-                          textFieldConfig?.hintText ?? PackageStrings.message,
-                      fillColor: sendMessageConfig?.textFieldBackgroundColor ??
-                          Colors.white,
-                      filled: true,
-                      hintStyle: textFieldConfig?.hintStyle ??
-                          TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade600,
-                            letterSpacing: 0.25,
-                          ),
-                      contentPadding: textFieldConfig?.contentPadding ??
-                          const EdgeInsets.symmetric(horizontal: 6),
-                      border: outlineBorder,
-                      focusedBorder: outlineBorder,
-                      enabledBorder: outlineBorder,
-                      disabledBorder: outlineBorder,
-                    ),
+                    contentPadding: textFieldConfig?.contentPadding ??
+                        const EdgeInsets.symmetric(horizontal: 6),
+                    border: outlineBorder,
+                    focusedBorder: outlineBorder,
+                    enabledBorder: outlineBorder,
+                    disabledBorder: outlineBorder,
                   ),
                 ),
+              ),
               ValueListenableBuilder<String>(
                 valueListenable: _inputText,
                 builder: (_, inputTextValue, child) {
@@ -274,34 +274,34 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                                   ),
                             ),
                         ],
-                        if ((sendMessageConfig?.allowRecordingVoice ?? false) &&
-                            !kIsWeb &&
-                            (Platform.isIOS || Platform.isAndroid))
-                          IconButton(
-                            onPressed: (textFieldConfig?.enabled ?? true)
-                                ? _recordOrStop
-                                : null,
-                            icon: (isRecordingValue
-                                    ? voiceRecordingConfig?.stopIcon
-                                    : voiceRecordingConfig?.micIcon) ??
-                                Icon(
-                                  isRecordingValue ? Icons.stop : Icons.mic,
-                                  color:
-                                      voiceRecordingConfig?.recorderIconColor,
-                                ),
-                          ),
-                        if (isRecordingValue &&
-                            cancelRecordConfiguration != null)
-                          IconButton(
-                            onPressed: () {
-                              cancelRecordConfiguration?.onCancel?.call();
-                              _cancelRecording();
-                            },
-                            icon: cancelRecordConfiguration?.icon ??
-                                const Icon(Icons.cancel_outlined),
-                            color: cancelRecordConfiguration?.iconColor ??
-                                voiceRecordingConfig?.recorderIconColor,
-                          ),
+                        // if ((sendMessageConfig?.allowRecordingVoice ?? false) &&
+                        //     !kIsWeb &&
+                        //     (Platform.isIOS || Platform.isAndroid))
+                        //   IconButton(
+                        //     onPressed: (textFieldConfig?.enabled ?? true)
+                        //         ? _recordOrStop
+                        //         : null,
+                        //     icon: (isRecordingValue
+                        //             ? voiceRecordingConfig?.stopIcon
+                        //             : voiceRecordingConfig?.micIcon) ??
+                        //         Icon(
+                        //           isRecordingValue ? Icons.stop : Icons.mic,
+                        //           color:
+                        //               voiceRecordingConfig?.recorderIconColor,
+                        //         ),
+                        //   ),
+                        // if (isRecordingValue &&
+                        //     cancelRecordConfiguration != null)
+                        //   IconButton(
+                        //     onPressed: () {
+                        //       cancelRecordConfiguration?.onCancel?.call();
+                        //       _cancelRecording();
+                        //     },
+                        //     icon: cancelRecordConfiguration?.icon ??
+                        //         const Icon(Icons.cancel_outlined),
+                        //     color: cancelRecordConfiguration?.iconColor ??
+                        //         voiceRecordingConfig?.recorderIconColor,
+                        //   ),
                       ],
                     );
                   }
@@ -314,48 +314,48 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
     );
   }
 
-  FutureOr<void> _cancelRecording() async {
-    assert(
-      defaultTargetPlatform == TargetPlatform.iOS ||
-          defaultTargetPlatform == TargetPlatform.android,
-      "Voice messages are only supported with android and ios platform",
-    );
-    if (!isRecording.value) return;
-    final path = await controller?.stop();
-    if (path == null) {
-      isRecording.value = false;
-      return;
-    }
-    final file = File(path);
-
-    if (await file.exists()) {
-      await file.delete();
-    }
-
-    isRecording.value = false;
-  }
-
-  Future<void> _recordOrStop() async {
-    assert(
-      defaultTargetPlatform == TargetPlatform.iOS ||
-          defaultTargetPlatform == TargetPlatform.android,
-      "Voice messages are only supported with android and ios platform",
-    );
-    if (!isRecording.value) {
-      await controller?.record(
-        sampleRate: voiceRecordingConfig?.sampleRate,
-        bitRate: voiceRecordingConfig?.bitRate,
-        androidEncoder: voiceRecordingConfig?.androidEncoder,
-        iosEncoder: voiceRecordingConfig?.iosEncoder,
-        androidOutputFormat: voiceRecordingConfig?.androidOutputFormat,
-      );
-      isRecording.value = true;
-    } else {
-      final path = await controller?.stop();
-      isRecording.value = false;
-      widget.onRecordingComplete(path);
-    }
-  }
+  // FutureOr<void> _cancelRecording() async {
+  //   assert(
+  //     defaultTargetPlatform == TargetPlatform.iOS ||
+  //         defaultTargetPlatform == TargetPlatform.android,
+  //     "Voice messages are only supported with android and ios platform",
+  //   );
+  //   if (!isRecording.value) return;
+  //   final path = await controller?.stop();
+  //   if (path == null) {
+  //     isRecording.value = false;
+  //     return;
+  //   }
+  //   final file = File(path);
+  //
+  //   if (await file.exists()) {
+  //     await file.delete();
+  //   }
+  //
+  //   isRecording.value = false;
+  // }
+  //
+  // Future<void> _recordOrStop() async {
+  //   assert(
+  //     defaultTargetPlatform == TargetPlatform.iOS ||
+  //         defaultTargetPlatform == TargetPlatform.android,
+  //     "Voice messages are only supported with android and ios platform",
+  //   );
+  //   if (!isRecording.value) {
+  //     await controller?.record(
+  //       sampleRate: voiceRecordingConfig?.sampleRate,
+  //       bitRate: voiceRecordingConfig?.bitRate,
+  //       androidEncoder: voiceRecordingConfig?.androidEncoder,
+  //       iosEncoder: voiceRecordingConfig?.iosEncoder,
+  //       androidOutputFormat: voiceRecordingConfig?.androidOutputFormat,
+  //     );
+  //     isRecording.value = true;
+  //   } else {
+  //     final path = await controller?.stop();
+  //     isRecording.value = false;
+  //     widget.onRecordingComplete(path);
+  //   }
+  // }
 
   void _onIconPressed(
     ImageSource imageSource, {

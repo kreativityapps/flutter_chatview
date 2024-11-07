@@ -1,5 +1,5 @@
 import 'package:chatview/src/models/models.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+// import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 
 class ConfigurationsInheritedWidget extends InheritedWidget {
@@ -15,7 +15,7 @@ class ConfigurationsInheritedWidget extends InheritedWidget {
     this.repliedMessageConfig,
     this.typeIndicatorConfig,
     this.replyPopupConfig,
-    this.emojiPickerSheetConfig,
+    // this.emojiPickerSheetConfig,
     this.scrollToBottomButtonConfig,
   }) : super(key: key, child: child);
 
@@ -49,7 +49,7 @@ class ConfigurationsInheritedWidget extends InheritedWidget {
   final ReplyPopupConfiguration? replyPopupConfig;
 
   /// Configuration for emoji picker sheet
-  final Config? emojiPickerSheetConfig;
+  // final Config? emojiPickerSheetConfig;
 
   /// Provides a configuration for scroll to bottom button config
   final ScrollToBottomButtonConfig? scrollToBottomButtonConfig;

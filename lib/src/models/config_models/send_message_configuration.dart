@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import 'package:audio_waveforms/audio_waveforms.dart';
+// import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -226,7 +226,7 @@ class VoiceRecordingConfiguration {
   /// Styling configuration for the recorder widget as well as
   /// configuring the audio recording quality.
   const VoiceRecordingConfiguration({
-    this.waveStyle,
+    // this.waveStyle,
     this.padding,
     this.margin,
     this.decoration,
@@ -236,13 +236,13 @@ class VoiceRecordingConfiguration {
     this.stopIcon,
     this.sampleRate,
     this.bitRate,
-    this.androidEncoder,
-    this.iosEncoder,
-    this.androidOutputFormat,
+    // this.androidEncoder,
+    // this.iosEncoder,
+    // this.androidOutputFormat,
   });
 
   /// Applies styles to waveform.
-  final WaveStyle? waveStyle;
+  // final WaveStyle? waveStyle;
 
   /// Applies padding around waveform widget.
   final EdgeInsets? padding;
@@ -276,14 +276,14 @@ class VoiceRecordingConfiguration {
   /// but also larger file sizes.
   final int? bitRate;
 
-  /// Audio encoder to be used for recording for IOS.
-  final IosEncoder? iosEncoder;
-
-  /// Audio encoder to be used for recording for Android.
-  final AndroidEncoder? androidEncoder;
-
-  /// The audio output format to be used for recorded audio files on Android.
-  final AndroidOutputFormat? androidOutputFormat;
+  // /// Audio encoder to be used for recording for IOS.
+  // final IosEncoder? iosEncoder;
+  //
+  // /// Audio encoder to be used for recording for Android.
+  // final AndroidEncoder? androidEncoder;
+  //
+  // /// The audio output format to be used for recorded audio files on Android.
+  // final AndroidOutputFormat? androidOutputFormat;
 }
 
 class CancelRecordConfiguration {

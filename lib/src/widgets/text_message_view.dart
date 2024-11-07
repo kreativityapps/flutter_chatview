@@ -23,6 +23,8 @@ import 'package:flutter/material.dart';
 
 import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/models/models.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/constants/constants.dart';
 import 'link_preview.dart';
@@ -93,13 +95,67 @@ class TextMessageView extends StatelessWidget {
                   linkPreviewConfig: _linkPreviewConfig,
                   url: textMessage,
                 )
-              : Text(
-                  textMessage,
-                  style: _textStyle ??
-                      textTheme.bodyMedium!.copyWith(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
+              : MarkdownBody(
+                  data: textMessage,
+                  selectable: false,
+                  softLineBreak: true,
+                  styleSheet: MarkdownStyleSheet(
+                    h1: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    h2: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    h3: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    h4: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    h5: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    h6: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    p: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    blockquote: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    code: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                    listBullet: _textStyle ??
+                        textTheme.bodyMedium!.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
+                        ),
+                  ),
+                  onTapLink: (text, href, title) {
+                    if (href != null) {
+                      launchUrl(Uri.parse(href));
+                    }
+                  },
                 ),
         ),
         if (message.reaction.reactions.isNotEmpty)

@@ -21,6 +21,7 @@
  */
 import 'package:chatview/chatview.dart';
 import 'package:chatview/src/extensions/extensions.dart';
+import 'package:chatview/src/widgets/chat_view_inherited_widget.dart';
 import 'package:chatview/src/widgets/suggestions/suggestion_list.dart';
 import 'package:chatview/src/widgets/type_indicator_widget.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ import 'chat_group_header.dart';
 
 class ChatGroupedListWidget extends StatefulWidget {
   const ChatGroupedListWidget({
-    Key? key,
+    super.key,
     required this.showPopUp,
     required this.scrollController,
     required this.replyMessage,
@@ -38,7 +39,7 @@ class ChatGroupedListWidget extends StatefulWidget {
     required this.onChatListTap,
     required this.onChatBubbleLongPress,
     required this.isEnableSwipeToSeeTime,
-  }) : super(key: key);
+  });
 
   /// Allow user to swipe to see time while reaction pop is not open.
   final bool showPopUp;
@@ -104,8 +105,9 @@ class _ChatGroupedListWidgetState extends State<ChatGroupedListWidget>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       setState(() {
-        chatTextFieldHeight =
-            chatViewIW?.chatTextFieldViewKey.currentContext?.size?.height ?? 10;
+        chatTextFieldHeight = ChatViewInheritedWidget
+                .chatTextFieldViewKey.currentContext?.size?.height ??
+            10;
       });
     });
   }

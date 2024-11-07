@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import 'package:audio_waveforms/audio_waveforms.dart';
+// import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
@@ -51,14 +51,14 @@ class ReplyMessageView extends StatelessWidget {
               color: sendMessageConfig?.micIconColor,
             ),
             const SizedBox(width: 4),
-            if (message.voiceMessageDuration != null)
-              Text(
-                message.voiceMessageDuration!.toHHMMSS(),
-                style: TextStyle(
-                  fontSize: 12,
-                  color: sendMessageConfig?.replyMessageColor ?? Colors.black,
-                ),
-              ),
+            // if (message.voiceMessageDuration != null)
+            //   Text(
+            //     message.voiceMessageDuration!.toHHMMSS(),
+            //     style: TextStyle(
+            //       fontSize: 12,
+            //       color: sendMessageConfig?.replyMessageColor ?? Colors.black,
+            //     ),
+            //   ),
           ],
         ),
       MessageType.image => Row(
