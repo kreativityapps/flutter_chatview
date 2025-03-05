@@ -126,7 +126,10 @@ class ImageMessageView extends StatelessWidget {
                       } else {
                         return Image.file(
                           File(imageUrl),
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
+                          cacheHeight:
+                              (2.5 * (imageMessageConfig?.height ?? 200))
+                                  .toInt(),
                         );
                       }
                     }()),

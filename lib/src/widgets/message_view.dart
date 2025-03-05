@@ -219,17 +219,17 @@ class _MessageViewState extends State<MessageView>
                     highlightColor: widget.highlightColor,
                     highlightMessage: widget.shouldHighlight,
                   );
-                // } else if (widget.message.messageType.isVoice) {
-                //   return VoiceMessageView(
-                //     screenWidth: MediaQuery.of(context).size.width,
-                //     message: widget.message,
-                //     config: messageConfig?.voiceMessageConfig,
-                //     onMaxDuration: widget.onMaxDuration,
-                //     isMessageBySender: widget.isMessageBySender,
-                //     messageReactionConfig: messageConfig?.messageReactionConfig,
-                //     inComingChatBubbleConfig: widget.inComingChatBubbleConfig,
-                //     outgoingChatBubbleConfig: widget.outgoingChatBubbleConfig,
-                //   );
+                  // } else if (widget.message.messageType.isVoice) {
+                  //   return VoiceMessageView(
+                  //     screenWidth: MediaQuery.of(context).size.width,
+                  //     message: widget.message,
+                  //     config: messageConfig?.voiceMessageConfig,
+                  //     onMaxDuration: widget.onMaxDuration,
+                  //     isMessageBySender: widget.isMessageBySender,
+                  //     messageReactionConfig: messageConfig?.messageReactionConfig,
+                  //     inComingChatBubbleConfig: widget.inComingChatBubbleConfig,
+                  //     outgoingChatBubbleConfig: widget.outgoingChatBubbleConfig,
+                  //   );
                 } else if (widget.message.messageType.isCustom &&
                     messageConfig?.customMessageBuilder != null) {
                   return messageConfig?.customMessageBuilder!(widget.message);
@@ -240,6 +240,7 @@ class _MessageViewState extends State<MessageView>
             valueListenable: widget.message.statusNotifier,
             builder: (context, value, child) {
               if (widget.isMessageBySender &&
+                  (widget.controller?.initialMessageList.isNotEmpty ?? false) &&
                   widget.controller?.initialMessageList.last.id ==
                       widget.message.id &&
                   widget.message.status == MessageStatus.read) {
