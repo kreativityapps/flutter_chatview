@@ -21,18 +21,16 @@
  */
 import 'package:flutter/material.dart';
 
-import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/models/models.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:gpt_markdown/gpt_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/constants/constants.dart';
-import 'link_preview.dart';
 import 'reaction_widget.dart';
 
 class TextMessageView extends StatelessWidget {
   const TextMessageView({
-    Key? key,
+    super.key,
     required this.isMessageBySender,
     required this.message,
     this.chatBubbleMaxWidth,
@@ -41,7 +39,7 @@ class TextMessageView extends StatelessWidget {
     this.messageReactionConfig,
     this.highlightMessage = false,
     this.highlightColor,
-  }) : super(key: key);
+  });
 
   /// Represents current message is sent by current user.
   final bool isMessageBySender;
@@ -90,73 +88,17 @@ class TextMessageView extends StatelessWidget {
             color: highlightMessage ? highlightColor : _color,
             borderRadius: _borderRadius(textMessage),
           ),
-          child: textMessage.isUrl
-              ? LinkPreview(
-                  linkPreviewConfig: _linkPreviewConfig,
-                  url: textMessage,
-                )
-              : MarkdownBody(
-                  data: textMessage,
-                  selectable: false,
-                  softLineBreak: true,
-                  styleSheet: MarkdownStyleSheet(
-                    h1: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    h2: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    h3: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    h4: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    h5: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    h6: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    p: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    blockquote: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    code: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                    listBullet: _textStyle ??
-                        textTheme.bodyMedium!.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                  ),
-                  onTapLink: (text, href, title) {
-                    if (href != null) {
-                      launchUrl(Uri.parse(href));
-                    }
-                  },
+          child: GptMarkdown(
+            textMessage,
+            style: _textStyle ??
+                textTheme.bodyMedium!.copyWith(
+                  color: Colors.white,
+                  fontSize: 16,
                 ),
+            onLinkTab: (href, title) {
+              launchUrl(Uri.parse(href));
+            },
+          ),
         ),
         if (message.reaction.reactions.isNotEmpty)
           ReactionWidget(
@@ -176,10 +118,6 @@ class TextMessageView extends StatelessWidget {
   EdgeInsetsGeometry? get _margin => isMessageBySender
       ? outgoingChatBubbleConfig?.margin
       : inComingChatBubbleConfig?.margin;
-
-  LinkPreviewConfiguration? get _linkPreviewConfig => isMessageBySender
-      ? outgoingChatBubbleConfig?.linkPreviewConfig
-      : inComingChatBubbleConfig?.linkPreviewConfig;
 
   TextStyle? get _textStyle => isMessageBySender
       ? outgoingChatBubbleConfig?.textStyle

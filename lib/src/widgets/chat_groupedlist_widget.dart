@@ -39,6 +39,7 @@ class ChatGroupedListWidget extends StatefulWidget {
     required this.onChatListTap,
     required this.onChatBubbleLongPress,
     required this.isEnableSwipeToSeeTime,
+    this.bottomWidget,
   });
 
   /// Allow user to swipe to see time while reaction pop is not open.
@@ -62,6 +63,8 @@ class ChatGroupedListWidget extends StatefulWidget {
   /// Provide flag for turn on/off to see message crated time view when user
   /// swipe whole chat.
   final bool isEnableSwipeToSeeTime;
+
+  final Widget? bottomWidget;
 
   @override
   State<ChatGroupedListWidget> createState() => _ChatGroupedListWidgetState();
@@ -190,7 +193,7 @@ class _ChatGroupedListWidgetState extends State<ChatGroupedListWidget>
                 child: const SuggestionList(),
               ),
             ),
-
+          widget.bottomWidget ?? Container(),
           // Adds bottom space to the message list, ensuring it is displayed
           // above the message text field.
           SizedBox(
@@ -257,7 +260,7 @@ class _ChatGroupedListWidgetState extends State<ChatGroupedListWidget>
     return StreamBuilder<List<Message>>(
       stream: chatController?.messageStreamController.stream,
       builder: (context, snapshot) {
-        if (!snapshot.connectionState.isActive) {
+        if (!snapshot.hasData) {
           return Center(
             child: chatBackgroundConfig.loadingWidget ??
                 const CircularProgressIndicator(),
