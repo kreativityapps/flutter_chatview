@@ -21,6 +21,7 @@
  */
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class ProfileImageWidget extends StatelessWidget {
             imageUrl!,
             height: radius,
             width: radius,
-            cacheHeight: 4 * radius.toInt(),
+            cacheHeight: 3 * radius.toInt(),
             fit: BoxFit.cover,
             errorBuilder: assetImageErrorBuilder ?? _errorWidget,
           ),
@@ -90,10 +91,18 @@ class ProfileImageWidget extends StatelessWidget {
             base64Decode(imageUrl!),
             height: radius,
             width: radius,
-            cacheHeight: 4 * radius.toInt(),
+            cacheHeight: 3 * radius.toInt(),
             fit: BoxFit.cover,
             errorBuilder: assetImageErrorBuilder ?? _errorWidget,
           ),
+        ImageType.file when (imageUrl?.isNotEmpty ?? false) => Image.file(
+          File(imageUrl!),
+          height: radius,
+          width: radius,
+          cacheHeight: 3 * radius.toInt(),
+          fit: BoxFit.cover,
+          errorBuilder: assetImageErrorBuilder ?? _errorWidget,
+        ),
         _ => const SizedBox.shrink(),
       },
     );

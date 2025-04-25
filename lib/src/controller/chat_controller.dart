@@ -100,6 +100,13 @@ class ChatController {
     }
   }
 
+  void deleteMessage(Message message) {
+    initialMessageList.removeWhere((m) => m.id == message.id);
+    if (!messageStreamController.isClosed) {
+      messageStreamController.sink.add(initialMessageList);
+    }
+  }
+
   /// Used to add reply suggestions.
   void addReplySuggestions(List<SuggestionItemData> suggestions) {
     _replySuggestion.value = suggestions;

@@ -237,42 +237,40 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                         if (!isRecordingValue) ...[
                           if (sendMessageConfig?.enableCameraImagePicker ??
                               true)
-                            IconButton(
-                              constraints: const BoxConstraints(),
-                              onPressed: (textFieldConfig?.enabled ?? true)
-                                  ? () => _onIconPressed(
-                                        ImageSource.camera,
-                                        config: sendMessageConfig
-                                            ?.imagePickerConfiguration,
-                                      )
-                                  : null,
-                              icon: imagePickerIconsConfig
-                                      ?.cameraImagePickerIcon ??
-                                  Icon(
+                            imagePickerIconsConfig?.cameraImagePickerIcon ??
+                                IconButton(
+                                  constraints: const BoxConstraints(),
+                                  onPressed: (textFieldConfig?.enabled ?? true)
+                                      ? () => _onIconPressed(
+                                            ImageSource.camera,
+                                            config: sendMessageConfig
+                                                ?.imagePickerConfiguration,
+                                          )
+                                      : null,
+                                  icon: Icon(
                                     Icons.camera_alt_outlined,
                                     color:
                                         imagePickerIconsConfig?.cameraIconColor,
                                   ),
-                            ),
+                                ),
                           if (sendMessageConfig?.enableGalleryImagePicker ??
                               true)
-                            IconButton(
-                              constraints: const BoxConstraints(),
-                              onPressed: (textFieldConfig?.enabled ?? true)
-                                  ? () => _onIconPressed(
-                                        ImageSource.gallery,
-                                        config: sendMessageConfig
-                                            ?.imagePickerConfiguration,
-                                      )
-                                  : null,
-                              icon: imagePickerIconsConfig
-                                      ?.galleryImagePickerIcon ??
-                                  Icon(
+                            imagePickerIconsConfig?.galleryImagePickerIcon ??
+                                IconButton(
+                                  constraints: const BoxConstraints(),
+                                  onPressed: (textFieldConfig?.enabled ?? true)
+                                      ? () => _onIconPressed(
+                                            ImageSource.gallery,
+                                            config: sendMessageConfig
+                                                ?.imagePickerConfiguration,
+                                          )
+                                      : null,
+                                  icon: Icon(
                                     Icons.image,
                                     color: imagePickerIconsConfig
                                         ?.galleryIconColor,
                                   ),
-                            ),
+                                ),
                         ],
                         // if ((sendMessageConfig?.allowRecordingVoice ?? false) &&
                         //     !kIsWeb &&

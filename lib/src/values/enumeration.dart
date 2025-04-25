@@ -84,13 +84,16 @@ enum ShowReceiptsIn { all, lastMessage }
 enum ImageType {
   asset,
   network,
-  base64;
+  base64,
+  file;
 
   bool get isNetwork => this == ImageType.network;
 
   bool get isAsset => this == ImageType.asset;
 
   bool get isBase64 => this == ImageType.base64;
+
+  bool get isFile => this == ImageType.file;
 
   static ImageType? tryParse(String? value) {
     final type = value?.trim().toLowerCase();
@@ -101,6 +104,8 @@ enum ImageType {
       return network;
     } else if (type == base64.name) {
       return base64;
+    } else if (type == file.name) {
+      return file;
     }
     return null;
   }
