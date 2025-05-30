@@ -171,24 +171,37 @@ class EmojiParser {
   ///
   String unemojify(String text) {
     if (text.isEmpty) return text;
-
-    final characters = Characters(text);
     final buffer = StringBuffer();
-    for (final character in characters) {
-      if (hasEmoji(character)) {
-        var result = character;
-        result = result.replaceAll(
-          character,
-          getEmoji(character).full,
-        );
-
-        buffer.write(result);
+    for (final grapheme in Characters(text)) {
+      if (hasEmoji(grapheme)) {
+        buffer.write(getEmoji(grapheme).full);
       } else {
-        buffer.write(character);
+        buffer.write(grapheme);
       }
     }
     return buffer.toString();
   }
+
+  // String unemojify(String text) {
+  //   if (text.isEmpty) return text;
+  //
+  //   final characters = Characters(text);
+  //   final buffer = StringBuffer();
+  //   for (final character in characters) {
+  //     if (hasEmoji(character)) {
+  //       var result = character;
+  //       result = result.replaceAll(
+  //         character,
+  //         getEmoji(character).full,
+  //       );
+  //
+  //       buffer.write(result);
+  //     } else {
+  //       buffer.write(character);
+  //     }
+  //   }
+  //   return buffer.toString();
+  // }
 
   ///
   /// Return a list of emojis found in the input text

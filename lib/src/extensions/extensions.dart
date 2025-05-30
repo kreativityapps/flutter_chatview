@@ -61,14 +61,23 @@ extension ValidateString on String {
 
   bool get fromMemory => startsWith('data:image');
 
+  static final _emojiParser = EmojiParser();
+
   bool get isAllEmoji {
-    for (String s in EmojiParser().unemojify(this).split(" ")) {
-      if (!s.startsWith(":") || !s.endsWith(":")) {
-        return false;
-      }
+    if (isEmpty) return false;
+    for (final grapheme in Characters(this)) {
+      if (!_emojiParser.hasEmoji(grapheme)) return false;
     }
     return true;
   }
+  // bool get isAllEmoji {
+  //   for (String s in EmojiParser().unemojify(this).split(" ")) {
+  //     if (!s.startsWith(":") || !s.endsWith(":")) {
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // }
 
   bool get isUrl => Uri.tryParse(this)?.isAbsolute ?? false;
 
