@@ -19,12 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import 'dart:async';
-import 'dart:io' show File, Platform;
-
-// import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:chatview/src/utils/constants/constants.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -34,7 +29,7 @@ import '../utils/package_strings.dart';
 
 class ChatUITextField extends StatefulWidget {
   const ChatUITextField({
-    Key? key,
+    super.key,
     this.sendMessageConfig,
     required this.focusNode,
     required this.textEditingController,
@@ -42,7 +37,7 @@ class ChatUITextField extends StatefulWidget {
     required this.onSubmit,
     required this.onRecordingComplete,
     required this.onImageSelected,
-  }) : super(key: key);
+  });
 
   /// Provides configuration of default text field in chat.
   final SendMessageConfiguration? sendMessageConfig;
@@ -183,6 +178,7 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                       const TextStyle(color: Colors.white),
                   maxLines: textFieldConfig?.maxLines ?? 5,
                   minLines: textFieldConfig?.minLines ?? 1,
+                  textInputAction: TextInputAction.send,
                   keyboardType: textFieldConfig?.textInputType,
                   inputFormatters: textFieldConfig?.inputFormatters,
                   onChanged: _onChanged,

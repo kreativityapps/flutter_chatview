@@ -28,9 +28,9 @@ import '../values/typedefs.dart';
 
 class EmojiRow extends StatelessWidget {
   EmojiRow({
-    Key? key,
+    super.key,
     required this.onEmojiTap,
-  }) : super(key: key);
+  });
 
   /// Provides callback when user taps on emoji in reaction pop-up.
   final StringCallback onEmojiTap;
@@ -76,20 +76,20 @@ class EmojiRow extends StatelessWidget {
             size: size ?? 28,
           ),
           onPressed: () => {},
-              //_showBottomSheet(context),
+          //_showBottomSheet(context),
         ),
       ],
     );
   }
 
-  // void _showBottomSheet(BuildContext context) => showModalBottomSheet<void>(
-  //       context: context,
-  //       builder: (newContext) => EmojiPickerWidget(
-  //         emojiPickerSheetConfig: context.chatListConfig.emojiPickerSheetConfig,
-  //         onSelected: (emoji) {
-  //           Navigator.pop(newContext);
-  //           onEmojiTap(emoji);
-  //         },
-  //       ),
-  //     );
+// void _showBottomSheet(BuildContext context) => showModalBottomSheet<void>(
+//       context: context,
+//       builder: (newContext) => EmojiPickerWidget(
+//         emojiPickerSheetConfig: context.chatListConfig.emojiPickerSheetConfig,
+//         onSelected: (emoji) {
+//           Navigator.pop(newContext);
+//           onEmojiTap(emoji);
+//         },
+//       ),
+//     );
 }

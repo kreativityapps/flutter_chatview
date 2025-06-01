@@ -23,16 +23,13 @@ import 'package:chatview/chatview.dart';
 import 'package:chatview/src/widgets/chat_view_inherited_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'package:chatview/src/extensions/extensions.dart';
 import '../utils/constants/constants.dart';
 import 'image_message_view.dart';
 import 'text_message_view.dart';
-import 'reaction_widget.dart';
-// import 'voice_message_view.dart';
 
 class MessageView extends StatefulWidget {
   const MessageView({
-    Key? key,
+    super.key,
     required this.message,
     required this.isMessageBySender,
     required this.onLongPress,
@@ -48,7 +45,7 @@ class MessageView extends StatefulWidget {
     this.messageConfig,
     this.onMaxDuration,
     this.controller,
-  }) : super(key: key);
+  });
 
   /// Provides message instance of chat.
   final Message message;
@@ -155,8 +152,6 @@ class _MessageViewState extends State<MessageView>
   }
 
   Widget get _messageView {
-    final message = widget.message.message;
-    final emojiMessageConfiguration = messageConfig?.emojiMessageConfig;
     return Padding(
       padding: EdgeInsets.only(
         bottom: widget.message.reaction.reactions.isNotEmpty ? 6 : 0,

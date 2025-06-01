@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-library chatview;
+library;
 
 export 'src/widgets/chat_view.dart';
 export 'src/models/models.dart';

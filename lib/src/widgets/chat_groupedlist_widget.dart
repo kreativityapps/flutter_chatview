@@ -149,25 +149,23 @@ class _ChatGroupedListWidgetState extends State<ChatGroupedListWidget>
   Widget build(BuildContext context) {
     final suggestionsListConfig =
         suggestionsConfig?.listConfig ?? const SuggestionListConfig();
-    return SingleChildScrollView(
-      reverse: true,
-      // When reaction popup is being appeared at that user should not scroll.
-      physics: showPopUp ? const NeverScrollableScrollPhysics() : null,
-      controller: widget.scrollController,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          GestureDetector(
-            onHorizontalDragUpdate: (details) =>
-                isEnableSwipeToSeeTime && !showPopUp
-                    ? _onHorizontalDrag(details)
-                    : null,
-            onHorizontalDragEnd: (details) =>
-                isEnableSwipeToSeeTime && !showPopUp
-                    ? _animationController?.reverse()
-                    : null,
-            onTap: widget.onChatListTap,
-            child: _animationController != null
+    return GestureDetector(
+      onHorizontalDragUpdate: (details) => isEnableSwipeToSeeTime && !showPopUp
+          ? _onHorizontalDrag(details)
+          : null,
+      onHorizontalDragEnd: (details) => isEnableSwipeToSeeTime && !showPopUp
+          ? _animationController?.reverse()
+          : null,
+      onTap: widget.onChatListTap,
+      child: SingleChildScrollView(
+        reverse: true,
+        // When reaction popup is being appeared at that user should not scroll.
+        physics: showPopUp ? const NeverScrollableScrollPhysics() : null,
+        controller: widget.scrollController,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _animationController != null
                 ? AnimatedBuilder(
                     animation: _animationController!,
                     builder: (context, child) {
@@ -175,31 +173,31 @@ class _ChatGroupedListWidgetState extends State<ChatGroupedListWidget>
                     },
                   )
                 : _chatStreamBuilder,
-          ),
-          if (chatController != null)
-            ValueListenableBuilder(
-              valueListenable: chatController!.typingIndicatorNotifier,
-              builder: (context, value, child) => TypingIndicator(
-                typeIndicatorConfig: chatListConfig.typeIndicatorConfig,
-                chatBubbleConfig:
-                    chatListConfig.chatBubbleConfig?.inComingChatBubbleConfig,
-                showIndicator: value,
+            if (chatController != null)
+              ValueListenableBuilder(
+                valueListenable: chatController!.typingIndicatorNotifier,
+                builder: (context, value, child) => TypingIndicator(
+                  typeIndicatorConfig: chatListConfig.typeIndicatorConfig,
+                  chatBubbleConfig:
+                      chatListConfig.chatBubbleConfig?.inComingChatBubbleConfig,
+                  showIndicator: value,
+                ),
               ),
-            ),
-          if (chatController != null)
-            Flexible(
-              child: Align(
-                alignment: suggestionsListConfig.axisAlignment.alignment,
-                child: const SuggestionList(),
+            if (chatController != null)
+              Flexible(
+                child: Align(
+                  alignment: suggestionsListConfig.axisAlignment.alignment,
+                  child: const SuggestionList(),
+                ),
               ),
+            widget.bottomWidget ?? Container(),
+            // Adds bottom space to the message list, ensuring it is displayed
+            // above the message text field.
+            SizedBox(
+              height: chatTextFieldHeight,
             ),
-          widget.bottomWidget ?? Container(),
-          // Adds bottom space to the message list, ensuring it is displayed
-          // above the message text field.
-          SizedBox(
-            height: chatTextFieldHeight,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -423,11 +421,11 @@ class _ChatGroupedListWidgetState extends State<ChatGroupedListWidget>
 
 class _GroupSeparatorBuilder extends StatelessWidget {
   const _GroupSeparatorBuilder({
-    Key? key,
     required this.separator,
     this.groupSeparatorBuilder,
     this.defaultGroupSeparatorConfig,
-  }) : super(key: key);
+  });
+
   final DateTime separator;
   final StringWithReturnWidget? groupSeparatorBuilder;
   final DefaultGroupSeparatorConfiguration? defaultGroupSeparatorConfig;

@@ -74,11 +74,14 @@ class ChatController {
   /// Provides current user which is sending messages.
   final ChatUser currentUser;
 
+  final ChatUser fallbackUser;
+
   ChatController({
     required this.initialMessageList,
     required this.scrollController,
     required this.otherUsers,
     required this.currentUser,
+    required this.fallbackUser,
   });
 
   /// Represents message stream of chat
@@ -179,5 +182,8 @@ class ChatController {
   /// Function for getting ChatUser object from user id
   ChatUser getUserFromId(String userId) => userId == currentUser.id
       ? currentUser
-      : otherUsers.firstWhere((element) => element.id == userId);
+      : otherUsers.firstWhere(
+          (element) => element.id == userId,
+          orElse: () => fallbackUser,
+        );
 }

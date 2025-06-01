@@ -38,6 +38,11 @@ class _ChatScreenState extends State<ChatScreen> {
   final _chatController = ChatController(
     initialMessageList: Data.messageList,
     scrollController: ScrollController(),
+    fallbackUser: ChatUser(
+      id: 'deleted',
+      name: 'Deleted User',
+      profilePhoto: Data.profileImage,
+    ),
     currentUser: ChatUser(
       id: '1',
       name: 'Flutter',
