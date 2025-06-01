@@ -184,6 +184,7 @@ class _ChatUITextFieldState extends State<ChatUITextField> {
                   onChanged: _onChanged,
                   onSubmitted: (_) {
                     widget.onSubmit();
+                    _inputText.value = '';
                   },
                   autofocus: textFieldConfig?.autofocus ?? false,
                   enabled: textFieldConfig?.enabled,
