@@ -96,19 +96,19 @@ class ProfileImageWidget extends StatelessWidget {
             errorBuilder: assetImageErrorBuilder ?? _errorWidget,
           ),
         ImageType.file when (imageUrl?.isNotEmpty ?? false) => Image.file(
-          File(imageUrl!),
-          height: radius,
-          width: radius,
-          cacheHeight: 3 * radius.toInt(),
-          fit: BoxFit.cover,
-          errorBuilder: assetImageErrorBuilder ?? _errorWidget,
-        ),
+            File(imageUrl!),
+            height: radius,
+            width: radius,
+            cacheHeight: 3 * radius.toInt(),
+            fit: BoxFit.cover,
+            errorBuilder: assetImageErrorBuilder ?? _errorWidget,
+          ),
         _ => const SizedBox.shrink(),
       },
     );
   }
 
-  Widget _networkImageErrorWidget(context, url, error) {
+  Widget _networkImageErrorWidget(BuildContext context, url, error) {
     return const Center(
       child: Icon(
         Icons.error_outline,
@@ -117,7 +117,7 @@ class ProfileImageWidget extends StatelessWidget {
     );
   }
 
-  Widget _errorWidget(context, error, stackTrace) {
+  Widget _errorWidget(BuildContext context, error, stackTrace) {
     return const Center(
       child: Icon(
         Icons.error_outline,

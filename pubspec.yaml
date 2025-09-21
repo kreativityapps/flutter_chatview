@@ -15,20 +15,20 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.20.2
-  url_launcher: ^6.3.1
+  url_launcher: ^6.3.2
   #emoji_picker_flutter: ^2.1.1
   any_link_preview: ^3.0.3
-  image_picker: '>=0.8.9 <2.0.0'
+  image_picker: ^1.2.0
 #  audio_waveforms: ^1.0.5
   # For formatting time locale in message receipts
   timeago: ^3.7.1
   cached_network_image: ^3.4.1
-  gpt_markdown: ^1.0.19
+  gpt_markdown: ^1.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
 

@@ -59,7 +59,7 @@ const double leftPadding3 = 12;
 const double textFieldBorderRadius = 27;
 const String defaultChatSeparatorDatePattern = 'MMM dd, yyyy';
 
-applicationDateFormatter(DateTime inputTime) {
+String applicationDateFormatter(DateTime inputTime) {
   if (DateTime.now().difference(inputTime).inDays <= 3) {
     return timeago.format(inputTime);
   } else {

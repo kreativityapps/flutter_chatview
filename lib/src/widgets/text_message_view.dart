@@ -95,7 +95,7 @@ class TextMessageView extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 16,
                 ),
-            onLinkTab: (href, title) {
+            onLinkTap: (href, title) {
               launchUrl(Uri.parse(href));
             },
           ),

@@ -29,8 +29,11 @@ class ChatBackgroundConfiguration {
   /// Provides background color of chat view.
   final Color? backgroundColor;
 
+  /// Provides background gradient of chat view.
+  final Gradient? backgroundGradient;
+
   /// Provides background image of chat view.
-  final String? backgroundImage;
+  final DecorationImage? backgroundImage;
 
   /// Provides padding of chat view.
   final EdgeInsetsGeometry? padding;
@@ -77,6 +80,7 @@ class ChatBackgroundConfiguration {
   const ChatBackgroundConfiguration({
     this.defaultGroupSeparatorConfig,
     this.backgroundColor,
+    this.backgroundGradient,
     this.backgroundImage,
     this.height,
     this.width,
