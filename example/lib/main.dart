@@ -1,7 +1,8 @@
 import 'package:chatview/chatview.dart';
 import 'package:example/data.dart';
 import 'package:example/models/theme.dart';
-import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:material_ui/material_ui.dart';
 
 void main() {
   runApp(const Example());

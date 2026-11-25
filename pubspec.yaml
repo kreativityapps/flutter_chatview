@@ -9,21 +9,24 @@ platforms:
   ios:
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: ^3.13.0
+  flutter: ">=3.47.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_ui: ^1.1.7
+  material_ui: ^1.11.1
   intl: ^0.20.2
-  url_launcher: ^6.3.2
+  url_launcher: ^6.3.3
   #emoji_picker_flutter: ^2.1.1
   any_link_preview: ^3.0.3
-  image_picker: ^1.2.3
+  image_picker: ^1.2.4
 #  audio_waveforms: ^1.0.5
   # For formatting time locale in message receipts
   timeago: ^3.7.1
-  cached_network_image: ^3.4.1
-  gpt_markdown: ^1.1.8
+  cached_network_image: ^4.0.7
+  gpt_markdown: ^1.4.1
 
 dev_dependencies:
   flutter_test:

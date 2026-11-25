@@ -24,7 +24,7 @@ import 'dart:io';
 
 import 'package:chatview/src/extensions/extensions.dart';
 import 'package:chatview/src/models/models.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'reaction_widget.dart';
 import 'share_icon.dart';

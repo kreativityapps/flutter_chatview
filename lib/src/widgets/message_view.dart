@@ -21,7 +21,7 @@
  */
 import 'package:chatview/chatview.dart';
 import 'package:chatview/src/widgets/chat_view_inherited_widget.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../utils/constants/constants.dart';
 import 'image_message_view.dart';
@@ -136,7 +136,7 @@ class _MessageViewState extends State<MessageView>
       child: (() {
         if (isLongPressEnable) {
           return AnimatedBuilder(
-            builder: (_, __) {
+            builder: (_, _) {
               return Transform.scale(
                 scale: 1 - _animationController!.value,
                 child: _messageView,

@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:material_ui/material_ui.dart';
 
 class AppTheme {
   final Color? appBarColor;

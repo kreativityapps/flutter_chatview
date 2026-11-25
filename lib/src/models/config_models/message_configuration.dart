@@ -21,7 +21,7 @@
  */
 import 'package:chatview/src/models/models.dart';
 import 'package:chatview/src/models/config_models/voice_message_configuration.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../values/typedefs.dart';
 

@@ -21,7 +21,7 @@
  */
 // import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:chatview/src/extensions/extensions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../models/data_models/message.dart';
 import '../models/config_models/replied_message_configuration.dart';

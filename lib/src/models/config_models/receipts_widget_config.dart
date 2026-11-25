@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import '../../../chatview.dart';
 import '../../utils/constants/constants.dart';
 
