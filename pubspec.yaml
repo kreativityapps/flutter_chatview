@@ -18,12 +18,12 @@ dependencies:
   url_launcher: ^6.3.2
   #emoji_picker_flutter: ^2.1.1
   any_link_preview: ^3.0.3
-  image_picker: ^1.2.0
+  image_picker: ^1.2.3
 #  audio_waveforms: ^1.0.5
   # For formatting time locale in message receipts
   timeago: ^3.7.1
   cached_network_image: ^3.4.1
-  gpt_markdown: ^1.1.4
+  gpt_markdown: ^1.1.8
 
 dev_dependencies:
   flutter_test:

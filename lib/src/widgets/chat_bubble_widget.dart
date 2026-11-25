@@ -130,7 +130,23 @@ class _ChatBubbleWidgetState extends State<ChatBubbleWidget> {
         children: [
           if (!isMessageBySender &&
               (featureActiveConfig?.enableOtherUserProfileAvatar ?? true))
-            profileCircle(messagedUser),
+            Column(
+              children: [
+                if ((isLastMessage &&
+                    chatBubbleConfig?.messageIdPlaying == null) ||
+                    widget.message.id == chatBubbleConfig?.messageIdPlaying)
+                  IconButton(
+                    onPressed: () {
+                      if (chatBubbleConfig?.onVolumeTap != null) {
+                        chatBubbleConfig?.onVolumeTap!(widget.message);
+                      }
+                    },
+                    icon: chatBubbleConfig?.volumeWidget ??
+                        Icon(Icons.play_arrow_rounded),
+                  ),
+                profileCircle(messagedUser),
+              ],
+            ),
           Expanded(
             child: _messagesWidgetColumn(messagedUser),
           ),

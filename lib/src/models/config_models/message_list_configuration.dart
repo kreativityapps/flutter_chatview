@@ -77,6 +77,8 @@ class ChatBackgroundConfiguration {
   /// Provides callback to sort message
   final MessageSorter? messageSorter;
 
+  final Function()? onLongPress;
+
   const ChatBackgroundConfiguration({
     this.defaultGroupSeparatorConfig,
     this.backgroundColor,
@@ -94,6 +96,7 @@ class ChatBackgroundConfiguration {
     this.loadingWidget,
     this.messageTimeAnimationCurve = Curves.decelerate,
     this.messageSorter,
+    this.onLongPress,
   });
 }
 

@@ -45,11 +45,8 @@ class ReactionPopup extends StatefulWidget {
 
 class ReactionPopupState extends State<ReactionPopup>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController = AnimationController(
-    vsync: this,
-    duration: reactionPopupConfig?.animationDuration ??
-        const Duration(milliseconds: 180),
-  );
+  late final AnimationController _animationController =
+      AnimationController(vsync: this);
 
   late final Animation<double> _scaleAnimation = CurvedAnimation(
     parent: _animationController,
@@ -86,6 +83,8 @@ class ReactionPopupState extends State<ReactionPopup>
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final toolTipWidth = deviceWidth > 450 ? 450 : deviceWidth;
+    _animationController.duration = reactionPopupConfig?.animationDuration ??
+        const Duration(milliseconds: 180);
     if (showPopUp) {
       _animationController.forward();
     } else {
@@ -148,8 +147,11 @@ class ReactionPopupState extends State<ReactionPopup>
       reactionPopupConfig?.customReactionPopup != null
           ? Listener(
               onPointerUp: (_) {
+                if (!mounted || !showPopUp) return;
                 widget.onTap();
-                reactionPopupConfig?.userReactionCallback?.call(_message!, '');
+                final message = _message;
+                if (!mounted || message == null) return;
+                reactionPopupConfig?.userReactionCallback?.call(message, '');
               },
               child: reactionPopupConfig?.customReactionPopup?.call(_message) ??
                   const SizedBox.shrink(),
@@ -180,9 +182,9 @@ class ReactionPopupState extends State<ReactionPopup>
     required double yCoordinate,
   }) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final yPosition = yCoordinate - (context.size?.height ?? 0);
       setState(() {
-        final yPosition = yCoordinate -
-            (chatViewIW!.reactionPopupKey.currentContext?.size?.height ?? 0);
         _message = message;
         _xCoordinate = xCoordinate;
         _yCoordinate = yPosition < 0 ? 0 : yPosition;

@@ -47,6 +47,12 @@ class ChatBubbleConfiguration {
   /// Provides callback when user tap twice on chat bubble.
   final MessageCallBack? onDoubleTap;
 
+  final MessageCallBack? onVolumeTap;
+
+  final Widget? volumeWidget;
+
+  final String? messageIdPlaying;
+
   final ReceiptsWidgetConfig? receiptsWidgetConfig;
 
   const ChatBubbleConfiguration({
@@ -57,6 +63,9 @@ class ChatBubbleConfiguration {
     this.inComingChatBubbleConfig,
     this.outgoingChatBubbleConfig,
     this.onDoubleTap,
+    this.volumeWidget,
+    this.onVolumeTap,
+    this.messageIdPlaying,
     this.receiptsWidgetConfig,
   });
 }

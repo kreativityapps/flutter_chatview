@@ -5,19 +5,21 @@ import 'package:chatview/chatview.dart';
 /// This widget for alternative of excessive amount of passing arguments
 /// over widgets.
 class ChatViewInheritedWidget extends InheritedWidget {
-  ChatViewInheritedWidget({
+  const ChatViewInheritedWidget({
     super.key,
     required super.child,
     required this.featureActiveConfig,
     required this.chatController,
+    required this.showPopUp,
+    required this.reactionPopupKey,
     this.profileCircleConfiguration,
   });
   final FeatureActiveConfig featureActiveConfig;
   final ProfileCircleConfiguration? profileCircleConfiguration;
   final ChatController chatController;
   static final GlobalKey chatTextFieldViewKey = GlobalKey();
-  final ValueNotifier<bool> showPopUp = ValueNotifier(false);
-  final GlobalKey<ReactionPopupState> reactionPopupKey = GlobalKey();
+  final ValueNotifier<bool> showPopUp;
+  final GlobalKey<ReactionPopupState> reactionPopupKey;
 
   static ChatViewInheritedWidget? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<ChatViewInheritedWidget>();
